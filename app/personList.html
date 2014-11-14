@@ -1,0 +1,18 @@
+<table width="100%">
+    <tr>
+        <th sort-order="red" sort-name="person.firstName">First Name</th>
+        <th sort-order="blue" sort-name="person.surname.surname">Surname</th>
+        <th>Date Of Birth</th>
+        <th>Gender</th>
+        <th>Father</th>
+        <th>Mother</th>
+    </tr>
+    <tr show-person-details="{{personDetails.person.entityId}}" ng-click=nav(personDetails.person.entityId) ng-class="{odd: $odd}"  ng-repeat="personDetails in persons | bla | males: true | orderBy:orderProp">
+        <td>{{personDetails.person.firstName}}</td>
+        <td>{{personDetails.person.surname.surname}}</td>
+        <td>{{personDetails.birthDate}}</td>
+        <td>{{personDetails.person.gender ? 'male' : 'female'}}</td>
+        <td>{{personDetails.fatherDetails | uppercase}}</td>
+        <td>{{personDetails.motherDetails}}</td>
+    </tr>
+</table>
