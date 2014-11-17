@@ -22,3 +22,10 @@ onsControllers.controller('PersonDetailsCtrl', function($scope, personService, $
     $scope.personDetails = personService.get({personId: $routeParams.personId});
 });
 
+onsControllers.controller('SurnameListCtrl', ['$scope', 'surnameService', '$routeParams', '$location', '$route',
+    function($scope, surnameService, $routeParams, $location, $route) {
+
+        $scope.surnames = surnameService.query();
+
+
+    }]);

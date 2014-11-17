@@ -2,7 +2,7 @@
   <dl>
     <dt><label for="firstName">First Name:</label></dt>
     <dd><input name="firstName" id="firstName" ng-model="person.firstName" required >
-        <span ng-show="addPersonForm.firstName.$error.required" >First Name is required</span>
+        <span ng-show="addPersonForm.firstName.$error.required && addPersonForm.firstName.dirty" >First Name is required</span>
     </dd>
     <dt><label for="surname">Surname:</label></dt>
     <dd><select id="surname" ng-model="person.surname.entityId" ng-options="surname.entityId as surname.surname for surname in surnames"></select></dd>
