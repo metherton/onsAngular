@@ -71,10 +71,6 @@ describe('Ons controllers', function() {
                 }
             };
 
-
-
-
-
             $routeParams = _$routeParams_;
             $location = _$location_;
             $route = _$route_;

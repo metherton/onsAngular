@@ -1,42 +1,60 @@
 'use strict';
 
-/* https://github.com/angular/protractor/blob/master/docs/toc.md */
+describe('Ons App', function() {
 
-describe('my app', function() {
+    it('should redirect index.html to index.html#/ons-command/rest/persons', function() {
+        browser.get('index.html');
+        browser.getLocationAbsUrl().then(function(url) {
+            expect(url.split('#')[1]).toBe('/persons');
+        });
+    });
 
-  browser.get('index.html');
+    describe('Etherton Person list view', function() {
+        beforeEach(function() {
+            browser.get('http://localhost:8000/app/index.html#/persons');
+        });
 
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    expect(browser.getLocationAbsUrl()).toMatch("/view1");
-  });
+        it('should display persons page', function() {
+            var personList = element.all(by.repeater('personDetails in persons | bla | males: true | orderBy:orderProp'));
+            expect(personList.count()).toEqual(4);
+            expect(personList.get(0).getText()).toContain('SAMUEL');
+            var surnameList = element.all(by.repeater('surname in addPersonForm.surnames'));
+            expect(surnameList.count()).toEqual(10);
+            expect(surnameList.get(0).getText()).toContain('etherton');
+
+        });
+    });
+
+    describe('Person detail view', function() {
+        beforeEach(function() {
+            browser.get('http://localhost:8080/ons-command/app/index.html#/ons-command/rest/persons/1');
+        });
+        it('should display person with id 1 page', function() {
+            expect(element(by.binding('personDetails.person.firstName')).getText()).toBe('mark');
+        });
+    });
+
+    describe('Surname list view', function() {
 
 
-  describe('view1', function() {
+        beforeEach(function() {
+            browser.get('http://localhost:8080/ons-command/app/index.html#/ons-command/rest/surnames');
+        });
+        it('should display surnames page', function() {
+            var history = element.all(by.repeater('surname in surnames'));
+            expect(history.count()).toEqual(11);
+        });
 
-    beforeEach(function() {
-      browser.get('index.html#/view1');
+    });
+
+    describe('Surname detail view', function() {
+        beforeEach(function() {
+            browser.get('http://localhost:8080/ons-command/app/index.html#/ons-command/rest/surnames/1');
+        });
+        it('should display surname with id 1 page', function() {
+            expect(element(by.binding('surname.surname')).getText()).toBe('etherton');
+        });
     });
 
 
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 1/);
-    });
-
-  });
-
-
-  describe('view2', function() {
-
-    beforeEach(function() {
-      browser.get('index.html#/view2');
-    });
-
-
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
-    });
-
-  });
 });
