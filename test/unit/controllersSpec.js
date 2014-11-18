@@ -60,15 +60,19 @@ describe('Ons controllers', function() {
 
         var scope, ctrl, surnameService, $routeParams, $location, $route;
 
+
         beforeEach(module('onsApp'));
 
-        beforeEach(inject(function($rootScope, $controller,  _$routeParams_, _$location_, _$route_) {
+        beforeEach(inject(function($rootScope, $controller, _$routeParams_, _$location_, _$route_) {
 
             var surnameServiceMock = {
                 query: function() {
                     return [{entityId:1,surname:'etherton'},{entityId:2, surname:'wilkinson'}];
                 }
             };
+
+
+
 
 
             $routeParams = _$routeParams_;
