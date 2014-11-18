@@ -16,7 +16,8 @@ onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeP
             $scope.personDetails = {};
         };
 
-    }]);
+    }
+]);
 
 onsControllers.controller('PersonDetailsCtrl', function($scope, personService, $routeParams, $window) {
     $scope.personDetails = personService.get({personId: $routeParams.personId});
@@ -24,7 +25,6 @@ onsControllers.controller('PersonDetailsCtrl', function($scope, personService, $
 
 onsControllers.controller('SurnameListCtrl', ['$scope', 'surnameService', '$routeParams', '$location', '$route',
     function($scope, surnameService, $routeParams, $location, $route) {
-        console.log('get surnames');
         $scope.surnames = surnameService.query();
     }
 ]);

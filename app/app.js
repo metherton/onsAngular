@@ -23,6 +23,18 @@ onsApp.directive('personList', function() {
     }
 );
 
+onsApp.directive('surnameList', function() {
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                surnames: '='
+            },
+            templateUrl: 'surnameList.html'
+        };
+    }
+);
+
 onsApp.directive('showPersonDetails', function($location) {
     return function link(scope, element, attrs) {
         element.on('click', function() {
