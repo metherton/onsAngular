@@ -21,15 +21,19 @@ describe('Ons controllers', function() {
 
         beforeEach(module('onsApp'));
 
-        beforeEach(inject(function($rootScope, $controller,  _$routeParams_, _$location_, _$route_) {
+        beforeEach(inject(function($rootScope, $controller,  _$routeParams_, _$location_, _$route_, _personService_) {
 
-            var personServiceMock = {
-                query: function() {
-                    return {personDetails : [{person: {surname:'Etherton',firstName:'Mark', birthDate: 2}}, {person : {surname:'Etherton',firstName:'Samuel', birthDate: 1}}]};
-                }
-            };
+//            var personServiceMock = {
+//                query: function() {
+//                    return {personDetails : [{person: {surname:'Etherton',firstName:'Mark', birthDate: 2}}, {person : {surname:'Etherton',firstName:'Samuel', birthDate: 1}}]};
+//                }
+//            };
 
-//            spyOn(personServiceMock, 'query').andReturn({personDetails : [{person: {surname:'Etherton',firstName:'Mark', birthDate: 2}}, {person : {surname:'Etherton',firstName:'Samuel', birthDate: 1}}]});
+            personService = _personService_;
+
+              spyOn(personService, 'query').andReturn({personDetails : [{person: {surname:'Etherton',firstName:'Mark', birthDate: 2}}, {person : {surname:'Etherton',firstName:'Samuel', birthDate: 1}}]});
+
+     //       spyOn(personServiceMock, 'query')
 
 
 //            $httpBackend = _$httpBackend_;
@@ -44,7 +48,8 @@ describe('Ons controllers', function() {
             $route = _$route_;
 
             scope = $rootScope.$new();
-            ctrl = $controller('PersonListCtrl', {$scope: scope, personService: personServiceMock});
+//            ctrl = $controller('PersonListCtrl', {$scope: scope, personService: personServiceMock});
+            ctrl = $controller('PersonListCtrl', {$scope: scope, personService: personService});
         }));
 
 
