@@ -28,3 +28,9 @@ onsControllers.controller('SurnameListCtrl', ['$scope', 'surnameService', '$rout
         $scope.surnames = surnameService.query();
     }
 ]);
+
+onsControllers.controller('LocationListCtrl', ['$scope', 'locationService', '$routeParams', '$location', '$route',
+    function($scope, locationService, $routeParams, $location, $route) {
+        $scope.locations = locationService.query();
+    }
+]);

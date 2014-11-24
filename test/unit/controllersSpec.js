@@ -71,6 +71,35 @@ describe('Ons controllers', function() {
 
     });
 
+    describe('LocationListCtrl', function(){
+
+        var scope, ctrl, locationService, $routeParams, $location, $route;
+
+
+        beforeEach(module('onsApp'));
+
+        beforeEach(inject(function($rootScope, $controller, _$routeParams_, _$location_, _$route_, _locationService_) {
+            locationService = _locationService_;
+            spyOn(locationService, 'query').andReturn([{entityId:1,name:'united kingdom', code: 'uk'},{entityId:2, name:'netherlands', code:'nl'}]);
+
+            $routeParams = _$routeParams_;
+            $location = _$location_;
+            $route = _$route_;
+
+            scope = $rootScope.$new();
+            ctrl = $controller('LocationListCtrl', {$scope: scope, locationService: locationService});
+        }));
+
+
+        it('should create "locations" model with 2 locations fetched from xhr', function() {
+
+            expect(scope.locations).toEqualData(
+                [{entityId:1,name:'united kingdom', code:'uk'},{entityId:2, name:'netherlands', code:'nl'}]);
+        });
+
+    });
+
+
 
 
 });

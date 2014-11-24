@@ -19,6 +19,13 @@ describe('Ons App', function() {
             expect(personList.count()).toBeGreaterThan(0);
             expect(personList.get(0).getText()).toContain('SAMUEL');
         });
+
+        it('should add new person to list', function() {
+
+
+
+        })
+
     });
 
     describe('Surname list view', function() {
@@ -33,6 +40,20 @@ describe('Ons App', function() {
         });
 
     });
+
+    describe('Location list view', function() {
+
+
+        beforeEach(function() {
+            browser.get('http://localhost:8000/app/index.html#/locations');
+        });
+        it('should display locations page', function() {
+            var history = element.all(by.repeater('location in locations'));
+            expect(history.count()).toBeGreaterThan(0);
+        });
+
+    });
+
 
 
 });

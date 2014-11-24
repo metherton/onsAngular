@@ -35,6 +35,18 @@ onsApp.directive('surnameList', function() {
     }
 );
 
+onsApp.directive('locationList', function() {
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                locations: '='
+            },
+            templateUrl: 'locationList.html'
+        };
+    }
+);
+
 onsApp.directive('showPersonDetails', function($location) {
     return function link(scope, element, attrs) {
         element.on('click', function() {
@@ -144,6 +156,8 @@ onsApp.config(function($routeProvider) {
     $routeProvider.when('/persons/:personId', {templateUrl: 'partials/personDetails.html', controller: 'PersonDetailsCtrl'});
     $routeProvider.when('/surnames', {templateUrl: 'partials/surnameList.html', controller: 'SurnameListCtrl'});
     $routeProvider.when('/surnames/:surnameId', {templateUrl: 'partials/surnameDetails.html', controller: 'SurnameDetailsCtrl'});
+    $routeProvider.when('/locations', {templateUrl: 'partials/locationList.html', controller: 'LocationListCtrl'});
+    $routeProvider.when('/locations/:locationId', {templateUrl: 'partials/locationDetails.html', controller: 'LocationDetailsCtrl'});
     $routeProvider.otherwise({redirectTo: '/persons'});
 });
 
