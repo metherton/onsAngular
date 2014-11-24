@@ -16,21 +16,8 @@ describe('Ons App', function() {
 
         it('should display persons page', function() {
             var personList = element.all(by.repeater('personDetails in persons | bla | males: true | orderBy:orderProp'));
-            expect(personList.count()).toEqual(4);
+            expect(personList.count()).toBeGreaterThan(0);
             expect(personList.get(0).getText()).toContain('SAMUEL');
-            var surnameList = element.all(by.repeater('surname in addPersonForm.surnames'));
-            expect(surnameList.count()).toEqual(10);
-            expect(surnameList.get(0).getText()).toContain('etherton');
-
-        });
-    });
-
-    describe('Person detail view', function() {
-        beforeEach(function() {
-            browser.get('http://localhost:8080/ons-command/app/index.html#/ons-command/rest/persons/1');
-        });
-        it('should display person with id 1 page', function() {
-            expect(element(by.binding('personDetails.person.firstName')).getText()).toBe('mark');
         });
     });
 
@@ -38,22 +25,13 @@ describe('Ons App', function() {
 
 
         beforeEach(function() {
-            browser.get('http://localhost:8080/ons-command/app/index.html#/ons-command/rest/surnames');
+            browser.get('http://localhost:8000/app/index.html#/surnames');
         });
         it('should display surnames page', function() {
             var history = element.all(by.repeater('surname in surnames'));
-            expect(history.count()).toEqual(11);
+            expect(history.count()).toBeGreaterThan(0);
         });
 
-    });
-
-    describe('Surname detail view', function() {
-        beforeEach(function() {
-            browser.get('http://localhost:8080/ons-command/app/index.html#/ons-command/rest/surnames/1');
-        });
-        it('should display surname with id 1 page', function() {
-            expect(element(by.binding('surname.surname')).getText()).toBe('etherton');
-        });
     });
 
 

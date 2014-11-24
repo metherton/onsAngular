@@ -23,38 +23,20 @@ describe('Ons controllers', function() {
 
         beforeEach(inject(function($rootScope, $controller,  _$routeParams_, _$location_, _$route_, _personService_) {
 
-//            var personServiceMock = {
-//                query: function() {
-//                    return {personDetails : [{person: {surname:'Etherton',firstName:'Mark', birthDate: 2}}, {person : {surname:'Etherton',firstName:'Samuel', birthDate: 1}}]};
-//                }
-//            };
-
             personService = _personService_;
 
-              spyOn(personService, 'query').andReturn({personDetails : [{person: {surname:'Etherton',firstName:'Mark', birthDate: 2}}, {person : {surname:'Etherton',firstName:'Samuel', birthDate: 1}}]});
+            spyOn(personService, 'query').andReturn({personDetails : [{person: {surname:'Etherton',firstName:'Mark', birthDate: 2}}, {person : {surname:'Etherton',firstName:'Samuel', birthDate: 1}}]});
 
-     //       spyOn(personServiceMock, 'query')
-
-
-//            $httpBackend = _$httpBackend_;
-//            $httpBackend.expectGET('http://localhost:8080/ons-command/rest/persons').
-//                respond({personDetails : [{person: {surname:'Etherton',firstName:'Mark', birthDate: 2}}, {person : {surname:'Etherton',firstName:'Samuel', birthDate: 1}}]});
-//
-//            $httpBackend.expectGET('partials/personList.html').respond({});
-
-           // personService = _personService_;
             $routeParams = _$routeParams_;
             $location = _$location_;
             $route = _$route_;
 
             scope = $rootScope.$new();
-//            ctrl = $controller('PersonListCtrl', {$scope: scope, personService: personServiceMock});
             ctrl = $controller('PersonListCtrl', {$scope: scope, personService: personService});
         }));
 
 
         it('should create "persons" model with 2 persons fetched from xhr', function() {
-
             expect(scope.personsForm).toEqualData(
                 {personDetails : [{person: {surname:'Etherton',firstName:'Mark', birthDate: 2}}, {person : {surname:'Etherton',firstName:'Samuel', birthDate: 1}}]});
         });
@@ -68,20 +50,16 @@ describe('Ons controllers', function() {
 
         beforeEach(module('onsApp'));
 
-        beforeEach(inject(function($rootScope, $controller, _$routeParams_, _$location_, _$route_) {
-
-            var surnameServiceMock = {
-                query: function() {
-                    return [{entityId:1,surname:'etherton'},{entityId:2, surname:'wilkinson'}];
-                }
-            };
+        beforeEach(inject(function($rootScope, $controller, _$routeParams_, _$location_, _$route_, _surnameService_) {
+            surnameService = _surnameService_;
+            spyOn(surnameService, 'query').andReturn([{entityId:1,surname:'etherton'},{entityId:2, surname:'wilkinson'}]);
 
             $routeParams = _$routeParams_;
             $location = _$location_;
             $route = _$route_;
 
             scope = $rootScope.$new();
-            ctrl = $controller('SurnameListCtrl', {$scope: scope, surnameService: surnameServiceMock});
+            ctrl = $controller('SurnameListCtrl', {$scope: scope, surnameService: surnameService});
         }));
 
 
