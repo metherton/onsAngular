@@ -20,9 +20,9 @@ onsServices.factory('surnameService', ['$resource',
 );
 
 onsServices.factory('locationService', ['$resource',
-        function($resource){
-            return $resource('http://localhost:8080/ons-command/rest/locations/:locationId', {}, {
-                query: {method: 'GET', params: {locationId: ''}, isArray: true}
-            });
-        }]
+    function($resource){
+        return $resource('http://localhost:8080/ons-command/rest/locations/:locationId', {}, {
+            query: {method: 'GET', params: {locationId: ''}, isArray: true}
+        });
+    }]
 );
