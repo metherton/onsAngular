@@ -1,120 +1,120 @@
 /* app css stylesheet */
 
-html, header, article, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, nav, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, section, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-    background: transparent;
-}
+/*html, header, article, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, nav, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, section, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*border: 0;*/
+    /*outline: 0;*/
+    /*font-size: 100%;*/
+    /*vertical-align: baseline;*/
+    /*background: transparent;*/
+/*}*/
 
-table {
-    border-collapse:collapse;width:100%;
-    vertical-align:bottom;
-}
+/*table {*/
+    /*border-collapse:collapse;width:100%;*/
+    /*vertical-align:bottom;*/
+/*}*/
 
-table tr:nth-child(odd)	{background-color:#f1f1f1;}
-table tr:nth-child(even) {background-color:#ffffff;}
+/*table tr:nth-child(odd)	{background-color:#f1f1f1;}*/
+/*table tr:nth-child(even) {background-color:#ffffff;}*/
 
 
-table th {
-    color:#ffffff;
-    background-color:#555555;
-    border:1px solid #555555;
-    padding:2px;
-    vertical-align:top;
-    text-align:left;
-}
+/*table th {*/
+    /*color:#ffffff;*/
+    /*background-color:#555555;*/
+    /*border:1px solid #555555;*/
+    /*padding:2px;*/
+    /*vertical-align:top;*/
+    /*text-align:left;*/
+/*}*/
 
-table td {
-    border:1px solid #d4d4d4;
-    padding:5px;
+/*table td {*/
+    /*border:1px solid #d4d4d4;*/
+    /*padding:5px;*/
     /*padding-top:7px;*/
     /*padding-bottom:7px;*/
-    vertical-align:top;
-}
+    /*vertical-align:top;*/
+/*}*/
 
-body {
-	font-family: verdana;
-	font-size:0.8em;
-}
+/*body {*/
+	/*font-family: verdana;*/
+	/*font-size:0.8em;*/
+/*}*/
 
-#content {
-	margin-left : 5%;
-	margin-right: 5%;
-}
+/*#content {*/
+	/*margin-left : 5%;*/
+	/*margin-right: 5%;*/
+/*}*/
 
-header {
-	background-color: rgb(50, 153, 187);;
-	color: white;
-	font-size: 2.0em;
-	padding-left: 5em;
-	padding-right: 15em;
-	padding-top: 0.3em;
-	padding-bottom: 0.3em;
-}
+/*header {*/
+	/*background-color: rgb(50, 153, 187);;*/
+	/*color: white;*/
+	/*font-size: 2.0em;*/
+	/*padding-left: 5em;*/
+	/*padding-right: 15em;*/
+	/*padding-top: 0.3em;*/
+	/*padding-bottom: 0.3em;*/
+/*}*/
 
-footer {
-    margin-top: 2em;
-	margin-left : 5%;
-}
+/*footer {*/
+    /*margin-top: 2em;*/
+	/*margin-left : 5%;*/
+/*}*/
 
-p {
-	margin-left: 5%;
-}
-form p {
-	padding-top: 1em;
-	padding-bottom: 1em;
-}
+/*p {*/
+	/*margin-left: 5%;*/
+/*}*/
+/*form p {*/
+	/*padding-top: 1em;*/
+	/*padding-bottom: 1em;*/
+/*}*/
 
-nav {
-	background-color: rgb(255, 153, 0);
-	padding-left: 10em;
-	padding-right: 10em;
-	padding-bottom: 0.3em;
-	padding-top: 0.3em;
-	font-size: 1.2em;
-	margin-bottom: 1%;
-}
+/*nav {*/
+	/*background-color: rgb(255, 153, 0);*/
+	/*padding-left: 10em;*/
+	/*padding-right: 10em;*/
+	/*padding-bottom: 0.3em;*/
+	/*padding-top: 0.3em;*/
+	/*font-size: 1.2em;*/
+	/*margin-bottom: 1%;*/
+/*}*/
 
-nav a {
-	margin-left: 2em;	
-}
+/*nav a {*/
+	/*margin-left: 2em;	*/
+/*}*/
 
-a {
-	cursor: pointer;
-}
+/*a {*/
+	/*cursor: pointer;*/
+/*}*/
 
-label {
-	width: 100px;
-}
+/*label {*/
+	/*width: 100px;*/
+/*}*/
 
-input {
-	width: 150px;
-}
+/*input {*/
+	/*width: 150px;*/
+/*}*/
 
-#birthDate {
-	line-height:15px;
-}
+/*#birthDate {*/
+	/*line-height:15px;*/
+/*}*/
 
-#male, #female {
-	width: 25px;	
-}
+/*#male, #female {*/
+	/*width: 25px;	*/
+/*}*/
 
-#lblMale, #lblFemale {
-	width: 50px;	
-}
+/*#lblMale, #lblFemale {*/
+	/*width: 50px;	*/
+/*}*/
 
-#lblMother, #lblFather {
-	margin-left: 4%;
-	width: 5em;	
-}
+/*#lblMother, #lblFather {*/
+	/*margin-left: 4%;*/
+	/*width: 5em;	*/
+/*}*/
 
-select {
-	width: 150px;	
-}
+/*select {*/
+	/*width: 150px;	*/
+/*}*/
 
 /*table {*/
     /*border-spacing: 0px;*/
@@ -136,30 +136,30 @@ select {
     /*background-color: #f1f1f1;*/
 /*}*/
 
-.red {
-    color: red;
-}
+/*.red {*/
+    /*color: red;*/
+/*}*/
 
-section dd {
-    margin-bottom: 1em;
-}
+/*section dd {*/
+    /*margin-bottom: 1em;*/
+/*}*/
 
-section, article {
-	border:1px solid grey; 
-	margin:1em; 
-	padding:1em;
-	border-radius: 15px;
-}
+/*section, article {*/
+	/*border:1px solid grey; */
+	/*margin:1em; */
+	/*padding:1em;*/
+	/*border-radius: 15px;*/
+/*}*/
 
-details {
-    margin-top: 2em;
-    margin-bottom: 2em;
-}
+/*details {*/
+    /*margin-top: 2em;*/
+    /*margin-bottom: 2em;*/
+/*}*/
 
-input.ng-invalid.ng-dirty {
-    border: 3px solid red;
-}
+/*input.ng-invalid.ng-dirty {*/
+    /*border: 3px solid red;*/
+/*}*/
 
-input.ng-valid {
-    border: 3px solid green;
-}
+/*input.ng-valid {*/
+    /*border: 3px solid green;*/
+/*}*/

@@ -1,4 +1,10 @@
-<location-list locations="locations"></location-list>
+<details id="addLocationForm">
+    <summary>Add new location</summary>
+    <section>
+        <location-form controller="locationFormCtrl" countries="locationsForm.countries" add-location="addLocation(location)"></location-form>
+    </section>
+</details>
+<location-list locations="locationsForm.locations"></location-list>
 
 
 

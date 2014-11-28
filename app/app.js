@@ -1,7 +1,7 @@
 'use strict';
 
 
-var onsApp = angular.module('onsApp', ['ngRoute', 'onsControllers', 'onsServices']);
+var onsApp = angular.module('onsApp', ['ngRoute', 'onsControllers', 'onsServices', 'ui.bootstrap']);
 
 onsApp.directive('personList', function() {
         return {
@@ -136,6 +136,45 @@ onsApp.directive('personForm', function() {
                 $scope.person = {};
                 $scope.addPersonForm.$setPristine();
             }
+
+            $scope.today = function() {
+                $scope.dt = new Date();
+            };
+            $scope.today();
+
+            $scope.clear = function () {
+                $scope.dt = null;
+            };
+
+            // Disable weekend selection
+            $scope.disabled = function(date, mode) {
+                return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+            };
+
+            $scope.toggleMin = function() {
+                $scope.minDate = $scope.minDate ? null : new Date();
+            };
+            $scope.toggleMin();
+
+            $scope.open = function($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+
+                $scope.opened = true;
+            };
+
+            $scope.dateOptions = {
+                formatYear: 'yy',
+                startingDay: 1
+            };
+
+            $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+            $scope.format = $scope.formats[0];
+
+
+
+
+
         },
         restrict: 'E',
         replace: true,
@@ -149,6 +188,40 @@ onsApp.directive('personForm', function() {
         templateUrl: 'personForm.html'
     };
 });
+
+
+onsApp.directive('locationForm', function() {
+    return {
+        controller: function($scope, $attrs) {
+            $scope.location = {};
+            $scope.clickStatus = false;
+            if($attrs.controller) {
+                $scope.$parent[$attrs.controller] = this;
+            }
+
+            $scope.submit = function() {
+                if ($scope.addLocationForm.$valid) {
+                    $scope.addLocation({location: $scope.location});
+                } else {
+                    alert("please fill in all details");
+                }
+            };
+
+            this.clear = function() {
+                $scope.location = {};
+                $scope.addLocationForm.$setPristine();
+            }
+        },
+        restrict: 'E',
+        replace: true,
+        scope: {
+            addLocation: '&',
+            countries: '='
+        },
+        templateUrl: 'locationForm.html'
+    };
+});
+
 
 
 onsApp.config(function($routeProvider) {

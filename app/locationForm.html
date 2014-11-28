@@ -1,0 +1,20 @@
+<form name="addLocationForm" ng-submit="submit()" novalidate>
+  <dl>
+    <dt><label for="city">City:</label></dt>
+    <dd><input name="city" id="city" ng-model="location.city" required >
+        <span ng-show="addLocationForm.city.$error.required && addLocationForm.city.dirty" >City is required</span>
+    </dd>
+  <dt><label for="addressLine1">Address Line 1:</label></dt>
+  <dd><input name="addressLine1" id="addressLine1" ng-model="location.addressLine1" required >
+      <span ng-show="addLocationForm.addressLine1.$error.required && addLocationForm.addressLine1.dirty" >Address Line 1 is required</span>
+  </dd>
+      <dt><label for="addressLine2">Address Line 2:</label></dt>
+      <dd><input name="addressLine2" id="addressLine2" ng-model="location.addressLine2"></dd>
+      <dt><label for="postCode">Post Code:</label></dt>
+      <dd><input name="postCode" id="postCode" ng-model="location.postCode"></dd>
+
+    <dt><label for="country">Country:</label></dt>
+    <dd><select id="country" ng-model="location.country.entityId" ng-options="country.entityId as country.name for country in countries"></select></dd>
+  </dl>
+  <button type="submit">Add new location</button>
+</form>
