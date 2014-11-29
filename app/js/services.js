@@ -14,7 +14,8 @@ onsServices.factory('personService', ['$resource',
 onsServices.factory('surnameService', ['$resource',
   function($resource){
 	return $resource('http://localhost:8080/ons-command/rest/surnames/:surnameId', {}, {
-        query: {method: 'GET', params: {surnameId: ''}, isArray: true}
+        query: {method: 'GET', params: {surnameId: ''}, isArray: false},
+        addSurname: {method: 'POST'}
     });
   }]
 );

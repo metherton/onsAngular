@@ -4,6 +4,13 @@
             <h3 class="modal-title">I'm a modal!</h3>
         </div>
         <div class="modal-body">
+            <dt><label for="surname">Surname:</label></dt>
+            <dd><input name="surname" id="surname" ng-model="surname.surname" required >
+                <span ng-show="addSurnameForm.surname.$error.required && addSurnameForm.surname.dirty" >Surname is required</span>
+            </dd>
+
+
+
             <ul>
                 <li ng-repeat="item in items">
                     <a ng-click="selected.item = item">{{ item }}</a>

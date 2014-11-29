@@ -4,10 +4,11 @@
             <h3 class="modal-title">I'm a modal!</h3>
         </div>
         <div class="modal-body">
+            <dd><input name="surname" id="surname" ng-model="surname.surname" required >
             <ul>
-                <li ng-repeat="item in items">
-                    <a ng-click="selected.item = item">{{ item }}</a>
-                </li>
+                <!--<li ng-repeat="item in items">-->
+                    <!--<a ng-click="selected.item = item">{{ item }}</a>-->
+                <!--</li>-->
             </ul>
             Selected: <b>{{ selected.item }}</b>
         </div>
@@ -20,7 +21,7 @@
     <button class="btn btn-default" ng-click="open()">Open me!</button>
     <div ng-show="selected">Selection from a modal: {{ selected }}</div>
 </div>
-<surname-list surnames="surnames"></surname-list>
+<surname-list surnames="surnamesForm.surnames"></surname-list>
 
 
 
