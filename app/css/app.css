@@ -166,3 +166,7 @@ input.ng-invalid.ng-dirty {
 input.ng-valid {
     border: 3px solid green;
 }
+
+button.add-entity {
+    margin-bottom: 1em;
+}
