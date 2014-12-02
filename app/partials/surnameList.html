@@ -4,15 +4,15 @@
             <h3 class="modal-title">Add Surname</h3>
         </div>
         <div class="modal-body">
-            <dd><input name="surname" id="surname" ng-model="surname.surname" required >
+            <dd><input ng-change="change()" name="surname" id="surname" ng-model="surname.surname" required >
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button ng-disabled="isEmpty(surname.surname)" class="btn btn-primary" ng-click="ok()">OK</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
     </script>
 
-    <button class="btn btn-default add-entity" ng-click="open()">Add Surname</button>
+    <button type="button"  class="btn btn-link add-entity" ng-click="open()">Add Surname</button>
 </div>
 <surname-list surnames="surnamesForm.surnames"></surname-list>
 

@@ -25,6 +25,14 @@ onsControllers.controller('PersonDetailsCtrl', function($scope, personService, $
 
 onsControllers.controller('AddSurnameCtrl', function ($scope, $modalInstance) {
 
+    $scope.change = function() {
+        console.log('changed');
+    }
+
+    $scope.isEmpty = function(value) {
+        return value === undefined;
+    }
+
     $scope.ok = function () {
         $modalInstance.close($scope.surname);
     };

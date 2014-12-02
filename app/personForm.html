@@ -1,23 +1,26 @@
 <form name="addPersonForm" ng-submit="submit()" novalidate>
   <dl>
     <dt><label for="firstName">First Name:</label></dt>
-    <dd><input name="firstName" id="firstName" ng-model="person.firstName" required >
+    <dd><input class="form-group-sm form-control" name="firstName" id="firstName" ng-model="person.firstName" required >
         <span ng-show="addPersonForm.firstName.$error.required && addPersonForm.firstName.dirty" >First Name is required</span>
     </dd>
     <dt><label for="surname">Surname:</label></dt>
-    <dd><select id="surname" ng-model="person.surname.entityId" ng-options="surname.entityId as surname.surname for surname in surnames"></select></dd>
+    <dd><select class="form-group-sm form-control" id="surname" ng-model="person.surname.entityId" ng-options="surname.entityId as surname.surname for surname in surnames"></select></dd>
     <dt><label for="father">Father:</label></dt>
-    <dd><select id="father" ng-model="person.fatherId" ng-options="father.person.entityId as father.personSummary group by father.person.surname.surname | capitalize for father in fathers"></select></dd>
+    <dd><select class="form-group-sm form-control"  id="father" ng-model="person.fatherId" ng-options="father.person.entityId as father.personSummary group by father.person.surname.surname | capitalize for father in fathers"></select></dd>
     <dt><label for="mother">Mother:</label></dt>
-    <dd><select id="mother" ng-model="person.motherId" ng-options="mother.person.entityId as mother.personSummary for mother in mothers"></select></dd>
+    <dd><select class="form-group-sm form-control"  id="mother" ng-model="person.motherId" ng-options="mother.person.entityId as mother.personSummary for mother in mothers"></select></dd>
     <dt><label for="birthDate">Birth Date:</label></dt>
     <dd>
-        <p style="width:100%">
-            <input type="text" datepicker-popup="{{format}}" ng-model="person.birthDate" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
-            <span>
-            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-        </p>
+        <!--<div class="col-md-6">-->
+            <p class="input-group">
+                <input class="form-group-sm form-control"  type="text" datepicker-popup="{{format}}" ng-model="person.birthDate" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        <!--</div>-->
+
         <!--<input type="date" ng-model="person.birthDate" id="birthDate" />-->
     </dd>
     <dt><label for="gender">Gender:</label></dt>

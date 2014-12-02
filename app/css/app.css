@@ -63,10 +63,10 @@ footer {
 p {
 	margin-left: 5%;
 }
-form p {
-	padding-top: 1em;
-	padding-bottom: 1em;
-}
+/*form p {*/
+	/*padding-top: 1em;*/
+	/*padding-bottom: 1em;*/
+/*}*/
 
 nav {
 	background-color: rgb(255, 153, 0);
@@ -86,17 +86,17 @@ a {
 	cursor: pointer;
 }
 
-label {
-	width: 100px;
-}
+/*label {*/
+	/*width: 200px;*/
+/*}*/
 
 input {
 	width: 150px;
 }
 
-input.form-control {
-    width: 150px;
-}
+/*input.form-control {*/
+    /*width: 150px;*/
+/*}*/
 
 #birthDate {
 	line-height:15px;
@@ -159,14 +159,18 @@ details {
     margin-bottom: 2em;
 }
 
-input.ng-invalid.ng-dirty {
+select.ng-invalid.ng-dirty input.ng-invalid.ng-dirty {
     border: 3px solid red;
 }
 
-input.ng-valid {
+select.ng-valid input.ng-valid {
     border: 3px solid green;
 }
 
 button.add-entity {
     margin-bottom: 1em;
+}
+
+dd {
+    width: 20%;
 }
