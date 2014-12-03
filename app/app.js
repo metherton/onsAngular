@@ -1,7 +1,7 @@
 'use strict';
 
 
-var onsApp = angular.module('onsApp', ['ngRoute', 'onsControllers', 'onsServices', 'ui.bootstrap']);
+var onsApp = angular.module('onsApp', ['ngRoute', 'onsControllers', 'onsServices', 'ui.bootstrap', 'ui.grid', 'ui.grid.pagination']);
 
 onsApp.directive('personList', function() {
         return {

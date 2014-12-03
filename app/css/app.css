@@ -174,3 +174,8 @@ button.add-entity {
 dd {
     width: 20%;
 }
+
+.surnameGrid {
+ width: 100%;
+ height: 850px;
+}

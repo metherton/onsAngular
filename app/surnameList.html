@@ -1,8 +1,4 @@
-<table width="100%">
-    <tr>
-        <th>Surname</th>
-    </tr>
-    <tr ng-repeat="surname in surnames" >
-        <td><span ng-bind="surname.surname" /></td>
-    </tr>
-</table>
+<div>
+
+    <div ui-grid="{data: surnames}" ui-grid-pagination class="surnameGrid"></div>
+</div>

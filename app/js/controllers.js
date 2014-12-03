@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-var onsControllers = angular.module('onsControllers', []);
+var onsControllers = angular.module('onsControllers', ['ui.grid', 'ui.grid.pagination']);
 
 onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeParams', '$location', '$route',
     function($scope, personService, $routeParams, $location, $route) {
@@ -57,14 +57,56 @@ onsControllers.controller('LocationListCtrl', ['$scope', 'locationService', '$ro
 
 onsControllers.controller('SurnameListCtrl', ['$scope', 'surnameService', '$routeParams', '$location', '$route', '$modal', '$log',
     function($scope, surnameService, $routeParams, $location, $route, $modal, $log) {
+
+        $scope.gridOptions = {};
+        $scope.gridOptions.onRegisterApi = function (gridApi) {
+            $scope.gridApi = gridApi;
+        };
+//        $scope.gridOptions.data = $scope.surnamesForm.surnames;
+
+//        $scope.gridOptions.columnDefs = [
+//            { name:'surname'}
+//        ];
+
+     //   $scope.gridOptions.data = [{surname: 'ewe'},{surname: 'sdfs'}];
      //   $scope.surnames = surnameService.query();
 
-        $scope.surnamesForm = surnameService.query();
+//        $scope.surnamesForm = surnameService.query();
+
+
+        surnameService.query().$promise.then(function(data) {
+                $scope.gridOptions.data = data.surnames;
+            }
+        );
+
+      //  $scope.gridOptions.data = $scope.surnamesForm.surnames;
 
         $scope.addSurname = function(surname) {
             surnameService.addSurname(surname).$promise.then($route.reload);
             $scope.surname = {};
         };
+
+//        $scope.surnamesForm.surnames = [
+//            {
+//                "firstName": "Cox",
+//                "lastName": "Carney",
+//                "company": "Enormo",
+//                "employed": true
+//            },
+//            {
+//                "firstName": "Lorraine",
+//                "lastName": "Wise",
+//                "company": "Comveyer",
+//                "employed": false
+//            },
+//            {
+//                "firstName": "Nancy",
+//                "lastName": "Waters",
+//                "company": "Fuelton",
+//                "employed": false
+//            }
+//        ];
+
 
         $scope.open = function (size) {
 
@@ -80,6 +122,8 @@ onsControllers.controller('SurnameListCtrl', ['$scope', 'surnameService', '$rout
                 $log.info('Modal dismissed at: ' + new Date());
             });
         };
+
+
 
 
     }
