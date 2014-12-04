@@ -62,24 +62,15 @@ onsControllers.controller('SurnameListCtrl', ['$scope', 'surnameService', '$rout
         $scope.gridOptions.onRegisterApi = function (gridApi) {
             $scope.gridApi = gridApi;
         };
-//        $scope.gridOptions.data = $scope.surnamesForm.surnames;
-
-//        $scope.gridOptions.columnDefs = [
-//            { name:'surname'}
-//        ];
-
-     //   $scope.gridOptions.data = [{surname: 'ewe'},{surname: 'sdfs'}];
-     //   $scope.surnames = surnameService.query();
-
-//        $scope.surnamesForm = surnameService.query();
-
 
         surnameService.query().$promise.then(function(data) {
                 $scope.gridOptions.data = data.surnames;
             }
         );
 
-      //  $scope.gridOptions.data = $scope.surnamesForm.surnames;
+        $scope.gridOptions.columnDefs = [
+            { field: 'surname', displayName: 'Surname'}
+        ];
 
         $scope.addSurname = function(surname) {
             surnameService.addSurname(surname).$promise.then($route.reload);
