@@ -1,8 +1,54 @@
-<details id="addPersonForm">
-    <summary>Add new person</summary>
-    <section>
-      <person-form controller="personFormCtrl" surnames="personsForm.surnames" fathers="personsForm.fatherDetails" mothers="personsForm.motherDetails" add-person="addPerson(person)"></person-form>
-    </section>
-</details>
-<person-list order-prop="orderProp" persons="personsForm.personDetails"></person-list>
+<div>
+    <script type="text/ng-template" id="addPersonForm.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Add Person</h3>
+        </div>
+        <div class="modal-body">
+            <dl>
+                <dt><label for="firstName">First Name:</label></dt>
+                <dd><input ng-change="change()" class="form-group-sm form-control" name="firstName" id="firstName" ng-model="person.firstName" required >
+                    <span ng-show="addPersonForm.firstName.$error.required && addPersonForm.firstName.dirty" >First Name is required</span>
+                </dd>
+                <dt><label for="surname">Surname:</label></dt>
+                <dd><select ng-change="change()" class="form-group-sm form-control" id="surname" ng-model="person.surname.entityId" ng-options="surname.entityId as surname.surname for surname in surnames"></select></dd>
+                <dt><label for="father">Father:</label></dt>
+                <dd><select ng-change="change()" class="form-group-sm form-control"  id="father" ng-model="person.fatherId" ng-options="father.person.entityId as father.personSummary group by father.person.surname.surname | capitalize for father in fathers"></select></dd>
+                <dt><label for="mother">Mother:</label></dt>
+                <dd><select ng-change="change()" class="form-group-sm form-control"  id="mother" ng-model="person.motherId" ng-options="mother.person.entityId as mother.personSummary for mother in mothers"></select></dd>
+                <dt><label for="birthDate">Birth Date:</label></dt>
+                <dd>
+                    <!--<div class="col-md-6">-->
+                    <p class="input-group">
+                        <input ng-change="change()" class="form-group-sm form-control"  type="text" datepicker-popup="{{format}}" ng-model="person.birthDate" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+                    </p>
+                    <!--</div>-->
 
+                    <!--<input type="date" ng-model="person.birthDate" id="birthDate" />-->
+                </dd>
+                <dt><label for="gender">Gender:</label></dt>
+                <dd><input ng-change="change()" id="male" type="radio" ng-model="person.gender" value="1" /><label id="lblMale" for="male">Male</label><input  id="female" type="radio" ng-model="person.gender" value="0" /><label id="lblFemale" for="female">Female</label></dd>
+            </dl>
+
+        </div>
+        <div class="modal-footer">
+            <button ng-disabled="isEmpty(person.firstName)" class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button type="button"  class="btn btn-link add-entity" ng-click="open()">Add Person</button>
+</div>
+<div>
+    <div ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
+    <p>Page: {{ gridApi.pagination.getPage() }}</p>
+    <p>Total pages: {{ gridApi.pagination.getTotalPages() }}</p>
+    <button type="button" class="btn btn-success" ng-click="gridApi.pagination.previousPage()">
+        previous page
+    </button>
+    <button type="button" class="btn btn-success" ng-click="gridApi.pagination.nextPage()">
+        next page
+    </button>
+</div>

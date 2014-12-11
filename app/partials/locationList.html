@@ -1,10 +1,43 @@
-<details id="addLocationForm">
-    <summary>Add new location</summary>
-    <section>
-        <location-form controller="locationFormCtrl" countries="locationsForm.countries" add-location="addLocation(location)"></location-form>
-    </section>
-</details>
-<location-list locations="locationsForm.locations"></location-list>
+<div>
+    <script type="text/ng-template" id="addLocationForm.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Add Location</h3>
+        </div>
+        <div class="modal-body">
+            <dl>
+                <dt><label for="city">City:</label></dt>
+                <dd><input  ng-change="change()" name="city" id="city" ng-model="location.city" required >
+                    <span ng-show="addLocationForm.city.$error.required && addLocationForm.city.dirty" >City is required</span>
+                </dd>
+                <dt><label for="addressLine1">Address Line 1:</label></dt>
+                <dd><input  ng-change="change()" name="addressLine1" id="addressLine1" ng-model="location.addressLine1" required >
+                    <span ng-show="addLocationForm.addressLine1.$error.required && addLocationForm.addressLine1.dirty" >Address Line 1 is required</span>
+                </dd>
+                <dt><label for="addressLine2">Address Line 2:</label></dt>
+                <dd><input  ng-change="change()" name="addressLine2" id="addressLine2" ng-model="location.addressLine2"></dd>
+                <dt><label for="postCode">Post Code:</label></dt>
+                <dd><input  ng-change="change()" name="postCode" id="postCode" ng-model="location.postCode"></dd>
 
+                <dt><label for="country">Country:</label></dt>
+                <dd><select  ng-change="change()" id="country" ng-model="location.country.entityId" ng-options="country.entityId as country.name for country in countries"></select></dd>
+            </dl>
+        </div>
+        <div class="modal-footer">
+            <button ng-disabled="isEmpty(location.city)" class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
 
-
+    <button type="button"  class="btn btn-link add-entity" ng-click="open()">Add Location</button>
+</div>
+<div>
+    <div ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
+    <p>Page: {{ gridApi.pagination.getPage() }}</p>
+    <p>Total pages: {{ gridApi.pagination.getTotalPages() }}</p>
+    <button type="button" class="btn btn-success" ng-click="gridApi.pagination.previousPage()">
+        previous page
+    </button>
+    <button type="button" class="btn btn-success" ng-click="gridApi.pagination.nextPage()">
+        next page
+    </button>
+</div>
