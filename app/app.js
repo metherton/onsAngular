@@ -1,7 +1,14 @@
 'use strict';
 
 
-var onsApp = angular.module('onsApp', ['ngRoute', 'onsControllers', 'onsServices', 'ui.bootstrap', 'ui.grid', 'ui.grid.pagination']);
+var onsApp = angular.module('onsApp', ['ngRoute', 'onsControllers', 'onsServices', 'ui.bootstrap', 'ui.grid', 'ui.grid.pagination'])
+    // allow DI for use in controllers, unit tests
+    .constant('_', window._)
+    // use in views, ng-repeat="x in _.range(3)"
+    .run(function ($rootScope) {
+        $rootScope._ = window._;
+    });
+
 
 onsApp.directive('personList', function() {
         return {

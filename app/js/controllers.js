@@ -4,8 +4,8 @@
 
 var onsControllers = angular.module('onsControllers', ['ui.grid', 'ui.grid.pagination']);
 
-onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeParams', '$location', '$route', '$modal', '$log',
-    function($scope, personService, $routeParams, $location, $route, $modal, $log) {
+onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeParams', '$location', '$route', '$modal', '$log', '_',
+    function($scope, personService, $routeParams, $location, $route, $modal, $log, _) {
 
         $scope.gridOptions = {};
         $scope.gridOptions.onRegisterApi = function (gridApi) {
@@ -16,6 +16,9 @@ onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeP
                 $scope.surnames = data.surnames;
                 $scope.fathers = data.fatherDetails;
                 $scope.mothers = data.motherDetails;
+
+                var mappedValues = _.map([1, 2, 3], function(n) { return n * 3; });
+
                 $scope.gridOptions.data = data.personDetails;
             }
         );
