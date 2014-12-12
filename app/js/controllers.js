@@ -18,13 +18,20 @@ onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeP
                 $scope.mothers = data.motherDetails;
 
                 _(data.employees).forEach(function(employeeType) {
-                    _(employeeType).forEach(function(employee) {
+                    _.map(employeeType, function(employee) {
                         if (employee.startDate < Date.now()) {
                             employee.isActive = true;
                         } else if (employee.startDate < (Date.now() + 200000)) {
                             employee.isActiveSoon = true;
                         }
                     });
+//                    _(employeeType).forEach(function(employee) {
+//                        if (employee.startDate < Date.now()) {
+//                            employee.isActive = true;
+//                        } else if (employee.startDate < (Date.now() + 200000)) {
+//                            employee.isActiveSoon = true;
+//                        }
+//                    });
                 });
 
             //    var mappedValues = _.map([1, 2, 3], function(n) { return n * 3; });
