@@ -19,22 +19,16 @@ onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeP
 
                 _(data.employees).forEach(function(employeeType) {
                     _.map(employeeType, function(employee) {
+                        employee.isActive = employee.isActiveSoon = employee.isInactive = false;
                         if (employee.startDate < Date.now()) {
                             employee.isActive = true;
                         } else if (employee.startDate < (Date.now() + 200000)) {
                             employee.isActiveSoon = true;
+                        } else {
+                            employee.isInactive = true;
                         }
                     });
-//                    _(employeeType).forEach(function(employee) {
-//                        if (employee.startDate < Date.now()) {
-//                            employee.isActive = true;
-//                        } else if (employee.startDate < (Date.now() + 200000)) {
-//                            employee.isActiveSoon = true;
-//                        }
-//                    });
                 });
-
-            //    var mappedValues = _.map([1, 2, 3], function(n) { return n * 3; });
 
                 $scope.gridOptions.data = data.personDetails;
             }
