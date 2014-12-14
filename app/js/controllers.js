@@ -257,27 +257,6 @@ onsControllers.controller('SurnameListCtrl', ['$scope', 'surnameService', '$rout
             $scope.surname = {};
         };
 
-//        $scope.surnamesForm.surnames = [
-//            {
-//                "firstName": "Cox",
-//                "lastName": "Carney",
-//                "company": "Enormo",
-//                "employed": true
-//            },
-//            {
-//                "firstName": "Lorraine",
-//                "lastName": "Wise",
-//                "company": "Comveyer",
-//                "employed": false
-//            },
-//            {
-//                "firstName": "Nancy",
-//                "lastName": "Waters",
-//                "company": "Fuelton",
-//                "employed": false
-//            }
-//        ];
-
 
         $scope.open = function (size) {
 
@@ -299,3 +278,49 @@ onsControllers.controller('SurnameListCtrl', ['$scope', 'surnameService', '$rout
 
     }
 ]);
+
+onsControllers.controller('CensusListCtrl', ['$scope', 'censusService', '$routeParams', '$location', '$route', '$modal', '$log',
+    function($scope, censusService, $routeParams, $location, $route, $modal, $log) {
+
+        $scope.gridOptions = {};
+        $scope.gridOptions.onRegisterApi = function (gridApi) {
+            $scope.gridApi = gridApi;
+        };
+
+        censusService.query().$promise.then(function(data) {
+                var flattenedCensusData = _.flatten(_.values(data.censuses), true);
+                $scope.gridOptions.data = flattenedCensusData;
+            }
+        );
+
+        $scope.gridOptions.columnDefs = [
+            { field: 'person.firstName', displayName: 'First Name'}
+        ];
+
+        $scope.addCensusHouseholdEntry = function(censusHouseholdEntry) {
+            censusService.addCensusHouseholdEntry(censusHouseholdEntry).$promise.then($route.reload);
+            $scope.censusHouseholdEntry = {};
+        };
+
+
+        $scope.open = function (size) {
+
+            var modalInstance = $modal.open({
+                templateUrl: 'addCensusHouseholdEntryForm.html',
+                controller: 'AddCensusHouseholdEntryCtrl',
+                size: size
+            });
+
+            modalInstance.result.then(function (censusHouseholdEntry) {
+                censusService.addCensusHouseholdEntry(censusHouseholdEntry).$promise.then($route.reload);
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
+
+
+
+
+    }
+]);
+

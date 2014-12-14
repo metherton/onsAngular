@@ -20,6 +20,15 @@ onsServices.factory('surnameService', ['$resource',
   }]
 );
 
+onsServices.factory('censusService', ['$resource',
+        function($resource){
+            return $resource('http://localhost:8080/ons-command/rest/censuses/:censusHouseholdEntryId', {}, {
+                query: {method: 'GET', params: {censusHouseholdEntryId: ''}, isArray: false},
+                addCensusHouseholdEntry: {method: 'POST'}
+            });
+        }]
+);
+
 onsServices.factory('locationService', ['$resource',
     function($resource){
         return $resource('http://localhost:8080/ons-command/rest/locations/:locationId', {}, {

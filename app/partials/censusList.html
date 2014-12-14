@@ -1,0 +1,29 @@
+<div>
+    <script type="text/ng-template" id="addCensusHouseholdEntryForm.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Add Census Household Entry</h3>
+        </div>
+        <div class="modal-body">
+            <dd><input ng-change="change()" name="person" id="person" ng-model="surname.surname" required >
+        </div>
+        <div class="modal-footer">
+            <button ng-disabled="isEmpty(surname.surname)" class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+    <button type="button"  class="btn btn-link add-entity" ng-click="open()">Add Census Household Entry</button>
+</div>
+<div>
+    <div ui-grid="gridOptions" ui-grid-pagination class="censusGrid"></div>
+    <p>Page: {{ gridApi.pagination.getPage() }}</p>
+    <p>Total pages: {{ gridApi.pagination.getTotalPages() }}</p>
+    <button type="button" class="btn btn-success" ng-click="gridApi.pagination.previousPage()">
+        previous page
+    </button>
+    <button type="button" class="btn btn-success" ng-click="gridApi.pagination.nextPage()">
+        next page
+    </button>
+</div>
+
+
+
