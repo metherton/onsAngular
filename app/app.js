@@ -1,7 +1,7 @@
 'use strict';
 
 
-var onsApp = angular.module('onsApp', ['ngRoute', 'onsControllers', 'onsServices', 'ui.bootstrap', 'ui.grid', 'ui.grid.pagination'])
+var onsApp = angular.module('onsApp', ['ngRoute', 'onsControllers', 'onsServices', 'ui.bootstrap', 'ui.grid', 'ui.grid.pagination', 'angularMoment'])
     // allow DI for use in controllers, unit tests
     .constant('_', window._)
     // use in views, ng-repeat="x in _.range(3)"
@@ -235,7 +235,7 @@ onsApp.config(function($routeProvider) {
     $routeProvider.when('/persons', {templateUrl: 'partials/personList.html', controller: 'PersonListCtrl'});
     $routeProvider.when('/persons/:personId', {templateUrl: 'partials/personDetails.html', controller: 'PersonDetailsCtrl'});
     $routeProvider.when('/censuses', {templateUrl: 'partials/censusList.html', controller: 'CensusListCtrl'});
-    $routeProvider.when('/censuses/:censusId', {templateUrl: 'partials/censusDetails.html', controller: 'CensusDetailsCtrl'});
+    $routeProvider.when('/censuses  /:censusId', {templateUrl: 'partials/censusDetails.html', controller: 'CensusDetailsCtrl'});
     $routeProvider.when('/surnames', {templateUrl: 'partials/surnameList.html', controller: 'SurnameListCtrl'});
     $routeProvider.when('/surnames/:surnameId', {templateUrl: 'partials/surnameDetails.html', controller: 'SurnameDetailsCtrl'});
     $routeProvider.when('/locations', {templateUrl: 'partials/locationList.html', controller: 'LocationListCtrl'});

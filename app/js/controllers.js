@@ -4,8 +4,8 @@
 
 var onsControllers = angular.module('onsControllers', ['ui.grid', 'ui.grid.pagination']);
 
-onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeParams', '$location', '$route', '$modal', '$log', '_',
-    function($scope, personService, $routeParams, $location, $route, $modal, $log, _) {
+onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeParams', '$location', '$route', '$modal', '$log', '_', 'moment',
+    function($scope, personService, $routeParams, $location, $route, $modal, $log, _, moment) {
 
         $scope.gridOptions = {};
         $scope.gridOptions.onRegisterApi = function (gridApi) {
@@ -16,6 +16,8 @@ onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeP
                 $scope.surnames = data.surnames;
                 $scope.fathers = data.fatherDetails;
                 $scope.mothers = data.motherDetails;
+
+                var deathMoment = moment(data.deathDate);
 
                 _(data.employees).forEach(function(employeeType) {
                     _.map(employeeType, function(employee) {
@@ -279,8 +281,8 @@ onsControllers.controller('SurnameListCtrl', ['$scope', 'surnameService', '$rout
     }
 ]);
 
-onsControllers.controller('CensusListCtrl', ['$scope', 'censusService', '$routeParams', '$location', '$route', '$modal', '$log',
-    function($scope, censusService, $routeParams, $location, $route, $modal, $log) {
+onsControllers.controller('CensusListCtrl', ['$scope', 'censusService', '$routeParams', '$location', '$route', '$modal', '$log', 'moment',
+    function($scope, censusService, $routeParams, $location, $route, $modal, $log, moment) {
 
         $scope.gridOptions = {};
         $scope.gridOptions.onRegisterApi = function (gridApi) {
@@ -288,13 +290,21 @@ onsControllers.controller('CensusListCtrl', ['$scope', 'censusService', '$routeP
         };
 
         censusService.query().$promise.then(function(data) {
-                var flattenedCensusData = _.flatten(_.values(data.censuses), true);
-                $scope.gridOptions.data = flattenedCensusData;
-            }
-        );
+//            var flattenedCensusData = _.flatten(_.values(data.censuses), true);
+            var flattenedCensusData = _.forEach(_.flatten(_.values(data.censuses), true), function(entry) {
+                entry.person.age = 51;
+                return entry;
+            });
+
+//            var flattenedCensusData = _(data.censuses).values();
+   //         var flattenedCensusData = (_.values(data.censuses)).flatten(true);
+
+            $scope.gridOptions.data = flattenedCensusData;
+        });
 
         $scope.gridOptions.columnDefs = [
-            { field: 'person.firstName', displayName: 'First Name'}
+            { field: 'person.firstName', displayName: 'First Name'},
+            { field: 'person.age', displayName: 'Age'}
         ];
 
         $scope.addCensusHouseholdEntry = function(censusHouseholdEntry) {
