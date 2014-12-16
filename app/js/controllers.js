@@ -196,6 +196,7 @@ onsControllers.controller('LocationListCtrl', ['$scope', 'locationService', '$ro
         locationService.query().$promise.then(function(data) {
                 $scope.countries = data.countries;
                 $scope.gridOptions.data = data.locations;
+                $scope.locations = data.locations;
             }
         );
 
@@ -296,6 +297,8 @@ onsControllers.controller('CensusListCtrl', ['$scope', 'censusService', '$routeP
                 return entry;
             });
 
+
+     //       var bla = _(data.censuses).forEach(function(census) {_.flatten(true)});
 //            var flattenedCensusData = _(data.censuses).values();
    //         var flattenedCensusData = (_.values(data.censuses)).flatten(true);
 
