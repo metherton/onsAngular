@@ -175,12 +175,6 @@ onsControllers.controller('AddPersonCtrl', function ($scope, $modalInstance, sur
 
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
-
-
-
-
-
-
 });
 
 
@@ -291,24 +285,20 @@ onsControllers.controller('CensusListCtrl', ['$scope', 'censusService', '$routeP
         };
 
         censusService.query().$promise.then(function(data) {
-//            var flattenedCensusData = _.flatten(_.values(data.censuses), true);
-            var flattenedCensusData = _.forEach(_.flatten(_.values(data.censuses), true), function(entry) {
-                entry.person.age = 51;
-                return entry;
-            });
-
-
-     //       var bla = _(data.censuses).forEach(function(census) {_.flatten(true)});
-//            var flattenedCensusData = _(data.censuses).values();
-   //         var flattenedCensusData = (_.values(data.censuses)).flatten(true);
-
+            var flattenedCensusData = _(data.censuses).values().flatten(true).map(function (h) { h.person.age = 51;return h;}).value();
             $scope.gridOptions.data = flattenedCensusData;
         });
 
         $scope.gridOptions.columnDefs = [
+            { field: 'censusHousehold.census.year', displayName: 'Year'},
+            { field: 'censusHousehold.census.country.name', displayName: 'Country'},
             { field: 'person.firstName', displayName: 'First Name'},
-            { field: 'person.age', displayName: 'Age'}
-        ];
+            { field: 'person.surname.surname', displayName: 'Surname'},
+            { field: 'person.age', displayName: 'Age'},
+            { field: 'censusHousehold.location.addressLine1', displayName: 'Address Line 1'},
+            { field: 'censusHousehold.location.city', displayName: 'City'},
+            { field: 'censusHousehold.location.country.name', displayName: 'City'}
+            ];
 
         $scope.addCensusHouseholdEntry = function(censusHouseholdEntry) {
             censusService.addCensusHouseholdEntry(censusHouseholdEntry).$promise.then($route.reload);

@@ -1,20 +1,3 @@
-<table width="100%">
-    <tr>
-        <th>Address</th>
-        <th>City</th>
-        <th>Post Code</th>
-        <th>Country</th>
-    </tr>
-    <tr ng-repeat="location in locations" >
-        <td><span ng-bind="location.addressLine1" />,<span ng-bind="location.addressLine2" /></td>
-        <td><a ng-href="mailto:martinetherton63@gmail.com"><span ng-class="{red: location.city == 'sheffield'}"><span>{{location.city}}<span class="email-img"><span class="email-icon"></span></span></span></span></a></td>
-        <td><span ng-bind="location.postCode" /></td>
-        <td><span ng-bind="location.country.name" /></td>
-    </tr>
-</table>
-
-
-
 <div>
     <script type="text/ng-template" id="addLocationForm.html">
         <div class="modal-header">
