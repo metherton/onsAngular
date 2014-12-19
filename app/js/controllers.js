@@ -285,7 +285,7 @@ onsControllers.controller('CensusListCtrl', ['$scope', 'censusService', '$routeP
         };
 
         censusService.query().$promise.then(function(data) {
-            var flattenedCensusData = _(data.censuses).values().flatten(true).map(function (h) { h.person.age = 51;return h;}).value();
+            var flattenedCensusData = _(data.censuses).values().flatten(true).map(function (h) { var birthYear = new Date(h.person.birthDate); h.person.age = h.censusHousehold.census.year - birthYear.getFullYear();return h;}).value();
             $scope.gridOptions.data = flattenedCensusData;
         });
 
