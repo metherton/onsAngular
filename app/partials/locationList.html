@@ -5,6 +5,10 @@
         </div>
         <div class="modal-body">
             <dl>
+                <!--<div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"-->
+                     <!--ui-event="{'map-click': 'openMarkerInfo(marker)'}">-->
+                <!--</div>-->
+                <!--<div ui-map="myMap" ui-options="mapOptions" class="map-canvas" ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"></div>-->
                 <dt><label for="city">City:</label></dt>
                 <dd><input  ng-change="change()" name="city" id="city" ng-model="location.city" required >
                     <span ng-show="addLocationForm.city.$error.required && addLocationForm.city.dirty" >City is required</span>
@@ -17,9 +21,9 @@
                 <dd><input  ng-change="change()" name="addressLine2" id="addressLine2" ng-model="location.addressLine2"></dd>
                 <dt><label for="postCode">Post Code:</label></dt>
                 <dd><input  ng-change="change()" name="postCode" id="postCode" ng-model="location.postCode"></dd>
-
                 <dt><label for="country">Country:</label></dt>
                 <dd><select  ng-change="change()" id="country" ng-model="location.country.entityId" ng-options="country.entityId as country.name for country in countries"></select></dd>
+
             </dl>
         </div>
         <div class="modal-footer">

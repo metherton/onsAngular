@@ -208,3 +208,9 @@ dt {
      background-repeat:no-repeat;
      float:left;
  }
+
+ .map-canvas {
+    float: right;
+    height: 350px;
+    width: 350px;
+ }

@@ -1,7 +1,10 @@
 'use strict';
 
+function onGoogleReady() {
+    angular.bootstrap(document.getElementById("map"), ['onsApp']);
+}
 
-var onsApp = angular.module('onsApp', ['ngRoute', 'onsControllers', 'onsServices', 'ui.bootstrap', 'ui.grid', 'ui.grid.pagination', 'angularMoment'])
+var onsApp = angular.module('onsApp', ['ngRoute', 'onsControllers', 'onsServices', 'ui.bootstrap', 'ui.grid', 'ui.grid.pagination', 'angularMoment', 'ui.map'])
     // allow DI for use in controllers, unit tests
     .constant('_', window._)
     // use in views, ng-repeat="x in _.range(3)"
