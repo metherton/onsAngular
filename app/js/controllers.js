@@ -123,6 +123,31 @@ onsControllers.controller('AddLocationCtrl', function ($scope, $modalInstance, c
     };
 });
 
+//onsControllers.controller('AddCensusHouseholdEntryCtrl', function ($scope, $modalInstance, persons, locations) {
+onsControllers.controller('AddCensusHouseholdEntryCtrl', function ($scope, $modalInstance, censuses, locations, persons) {
+
+    $scope.censuses = censuses;
+    $scope.persons = persons;
+    $scope.locations = locations;
+
+    $scope.change = function() {
+        console.log('changed');
+    }
+
+    $scope.isEmpty = function(value) {
+        return value === undefined;
+    }
+
+    $scope.ok = function () {
+        $modalInstance.close($scope.censusHouseholdEntry);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
+});
+
+
 onsControllers.controller('AddPersonCtrl', function ($scope, $modalInstance, surnames, fathers, mothers) {
 
     $scope.surnames = surnames;
@@ -269,10 +294,6 @@ onsControllers.controller('SurnameListCtrl', ['$scope', 'surnameService', '$rout
                 $log.info('Modal dismissed at: ' + new Date());
             });
         };
-
-
-
-
     }
 ]);
 
@@ -285,8 +306,11 @@ onsControllers.controller('CensusListCtrl', ['$scope', 'censusService', '$routeP
         };
 
         censusService.query().$promise.then(function(data) {
-            var flattenedCensusData = _(data.censuses).values().flatten(true).map(function (h) { var birthYear = new Date(h.person.birthDate); h.person.age = h.censusHousehold.census.year - birthYear.getFullYear();return h;}).value();
+            var flattenedCensusData = _(data.censusHouseholdEntries).values().flatten(true).map(function (h) { var birthYear = new Date(h.person.birthDate); h.person.age = h.censusHousehold.census.year - birthYear.getFullYear();return h;}).value();
             $scope.gridOptions.data = flattenedCensusData;
+            $scope.censuses = data.censuses;
+            $scope.locations = data.locations;
+            $scope.persons = data.persons;
         });
 
         $scope.gridOptions.columnDefs = [
@@ -297,7 +321,7 @@ onsControllers.controller('CensusListCtrl', ['$scope', 'censusService', '$routeP
             { field: 'person.age', displayName: 'Age'},
             { field: 'censusHousehold.location.addressLine1', displayName: 'Address Line 1'},
             { field: 'censusHousehold.location.city', displayName: 'City'},
-            { field: 'censusHousehold.location.country.name', displayName: 'City'}
+            { field: 'censusHousehold.location.country.name', displayName: 'Country'}
             ];
 
         $scope.addCensusHouseholdEntry = function(censusHouseholdEntry) {
@@ -309,6 +333,17 @@ onsControllers.controller('CensusListCtrl', ['$scope', 'censusService', '$routeP
         $scope.open = function (size) {
 
             var modalInstance = $modal.open({
+                resolve: {
+                    censuses: function() {
+                        return $scope.censuses;
+                    },
+                    locations: function() {
+                        return $scope.locations;
+                    },
+                    persons: function() {
+                        return $scope.persons;
+                    }
+                },
                 templateUrl: 'addCensusHouseholdEntryForm.html',
                 controller: 'AddCensusHouseholdEntryCtrl',
                 size: size

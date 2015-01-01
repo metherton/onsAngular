@@ -4,10 +4,15 @@
             <h3 class="modal-title">Add Census Household Entry</h3>
         </div>
         <div class="modal-body">
-            <dd><input ng-change="change()" name="person" id="person" ng-model="surname.surname" required >
+            <dt><label for="census">Census:</label></dt>
+            <dd><select ng-change="change()" class="form-group-sm form-control" id="census" ng-model="censusHouseholdEntry.censusHousehold.census.entityId" ng-options="census.entityId as census.year for census in censuses"></select></dd>
+            <dt><label for="location">Location:</label></dt>
+            <dd><select ng-change="change()" class="form-group-sm form-control" id="location" ng-model="censusHouseholdEntry.censusHousehold.location.entityId" ng-options="location.entityId as location.city for location in locations"></select></dd>
+            <dt><label for="census">Person:</label></dt>
+            <dd><select ng-change="change()" class="form-group-sm form-control" id="person" ng-model="censusHouseholdEntry.person.entityId" ng-options="person.entityId as person.firstName for person in persons"></select></dd>
         </div>
         <div class="modal-footer">
-            <button ng-disabled="isEmpty(surname.surname)" class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
     </script>
