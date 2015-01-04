@@ -162,15 +162,20 @@ onsControllers.controller('AddCensusHouseholdEntryCtrl', function ($scope, $moda
 
     $scope.censuses = censuses;
     $scope.persons = persons;
+    $scope.personOptions = persons;
     $scope.locations = locations;
     $scope.locationOptions = locations;
 
     $scope.change = function() {
-        console.log('changed');
         console.log($scope.censusHouseholdEntry.censusHousehold.census.entityId);
+
         $scope.selectedCountryId = _($scope.censuses).filter(function(census) {
             return $scope.censusHouseholdEntry.censusHousehold.census.entityId == census.entityId;
         }).first().country.entityId;
+
+        $scope.selectedYearId = _($scope.censuses).filter(function(census) {
+            return $scope.censusHouseholdEntry.censusHousehold.census.entityId == census.entityId;
+        }).first().year;
 
 //        var flattenedCensusData = _(data.censusHouseholdEntries).values().flatten(true).map(function (h) { var birthYear = new Date(h.person.birthDate); h.person.age = h.censusHousehold.census.year - birthYear.getFullYear();return h;}).value();
 //        $scope.gridOptions.data = flattenedCensusData;
@@ -179,10 +184,13 @@ onsControllers.controller('AddCensusHouseholdEntryCtrl', function ($scope, $moda
 //        $scope.persons = data.persons;
 
         $scope.locationOptions = _($scope.locations).filter(function(location) {
-            console.log('selectedCountryId:' + $scope.selectedCountryId);
-            console.log('location country id:' + location.country.entityId);
             return location.country.entityId==$scope.selectedCountryId;
         }).value();
+
+        $scope.personOptions = _($scope.persons).filter(function(person) {
+            return (new Date(person.birthDate)).getFullYear() <= $scope.selectedYearId;
+        }).value();
+
     }
 
     $scope.isEmpty = function(value) {

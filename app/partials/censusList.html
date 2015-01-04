@@ -9,7 +9,7 @@
             <dt><label for="location">Location:</label></dt>
             <dd><select ng-change="change()" class="form-group-sm form-control" id="location" ng-model="censusHouseholdEntry.censusHousehold.location.entityId" ng-options="location.entityId as (location.addressLine1 + ' ' + location.addressLine2 + ' ' + location.city + ' ' +  location.country.name) for location in locationOptions"></select></dd>
             <dt><label for="census">Person:</label></dt>
-            <dd><select ng-change="change()" class="form-group-sm form-control" id="person" ng-model="censusHouseholdEntry.person.entityId" ng-options="person.entityId as (person.firstName + ' ' + person.surname.surname + ' ' + (person.birthDate | date) ) for person in persons"></select></dd>
+            <dd><select ng-change="change()" class="form-group-sm form-control" id="person" ng-model="censusHouseholdEntry.person.entityId" ng-options="person.entityId as (person.firstName + ' ' + person.surname.surname + ' ' + (person.birthDate | date) ) for person in personOptions"></select></dd>
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">OK</button>
