@@ -12,6 +12,9 @@ onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeP
             $scope.gridApi = gridApi;
         };
 
+        $scope.gridOptions.filterOptions = $scope.filterOptions;
+
+
         personService.query().$promise.then(function(data) {
                 $scope.surnames = data.surnames;
                 $scope.fathers = data.fatherDetails;
@@ -35,6 +38,10 @@ onsControllers.controller('PersonListCtrl', ['$scope', 'personService', '$routeP
                 $scope.gridOptions.data = data.personDetails;
             }
         );
+
+        $scope.filterOptions = {
+            filterText: 'Surname:capitalize'
+        };
 
         $scope.gridOptions.columnDefs = [
             { field: 'person.firstName', displayName: 'First Name'},
@@ -156,9 +163,26 @@ onsControllers.controller('AddCensusHouseholdEntryCtrl', function ($scope, $moda
     $scope.censuses = censuses;
     $scope.persons = persons;
     $scope.locations = locations;
+    $scope.locationOptions = locations;
 
     $scope.change = function() {
         console.log('changed');
+        console.log($scope.censusHouseholdEntry.censusHousehold.census.entityId);
+        $scope.selectedCountryId = _($scope.censuses).filter(function(census) {
+            return $scope.censusHouseholdEntry.censusHousehold.census.entityId == census.entityId;
+        }).first().country.entityId;
+
+//        var flattenedCensusData = _(data.censusHouseholdEntries).values().flatten(true).map(function (h) { var birthYear = new Date(h.person.birthDate); h.person.age = h.censusHousehold.census.year - birthYear.getFullYear();return h;}).value();
+//        $scope.gridOptions.data = flattenedCensusData;
+//        $scope.censuses = data.censuses;
+//        $scope.locations = data.locations;
+//        $scope.persons = data.persons;
+
+        $scope.locationOptions = _($scope.locations).filter(function(location) {
+            console.log('selectedCountryId:' + $scope.selectedCountryId);
+            console.log('location country id:' + location.country.entityId);
+            return location.country.entityId==$scope.selectedCountryId;
+        }).value();
     }
 
     $scope.isEmpty = function(value) {

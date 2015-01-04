@@ -12,7 +12,7 @@
                 <dt><label for="surname">Surname:</label></dt>
                 <dd><select ng-change="change()" class="form-group-sm form-control" id="surname" ng-model="person.surname.entityId" ng-options="surname.entityId as surname.surname for surname in surnames"></select></dd>
                 <dt><label for="father">Father:</label></dt>
-                <dd><select ng-change="change()" class="form-group-sm form-control"  id="father" ng-model="person.fatherId" ng-options="father.person.entityId as father.personSummary group by father.person.surname.surname | capitalize for father in fathers"></select></dd>
+                <dd><select ng-change="change()" class="form-group-sm form-control"  id="father" ng-model="person.fatherId" ng-options="father.person.entityId as father.personSummary group by father.person.surname.surname  for father in fathers"></select></dd>
                 <dt><label for="mother">Mother:</label></dt>
                 <dd><select ng-change="change()" class="form-group-sm form-control"  id="mother" ng-model="person.motherId" ng-options="mother.person.entityId as mother.personSummary for mother in mothers"></select></dd>
                 <dt><label for="birthDate">Birth Date:</label></dt>

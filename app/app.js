@@ -103,6 +103,27 @@ onsApp.filter('bla', function() {
     };
 });
 
+onsApp.filter('locationsForCensusCountry', function() {
+        return function(arr, censusId) {
+        var result = [];
+        if (angular.isDefined(arr)) {
+            for (var i = 0; i < arr.length; ++i) {
+                var personDetails = arr[i];
+                var newPersonFirstName =  uppercase(personDetails.person.firstName);
+                personDetails.person.firstName = newPersonFirstName;
+                result.push(personDetails);
+            }
+        }
+        return result;
+    };
+});
+
+onsApp.filter('capitalize', function() {
+    return function(input, all) {
+        return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
+    }
+});
+
 onsApp.filter('males', function() {
     return function(arr, isMale) {
         var result = [];
