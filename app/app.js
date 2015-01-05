@@ -7,6 +7,8 @@ function onGoogleReady() {
 var onsApp = angular.module('onsApp', ['ngRoute', 'onsControllers', 'onsServices', 'ui.bootstrap', 'ui.grid', 'ui.grid.pagination', 'angularMoment', 'ui.map'])
     // allow DI for use in controllers, unit tests
     .constant('_', window._)
+    .constant('baseUrl', 'http://localhost:8000/app/')
+    .constant('baseRestUrl', 'http://localhost:8080/')
     // use in views, ng-repeat="x in _.range(3)"
     .run(function ($rootScope) {
         $rootScope._ = window._;
@@ -256,6 +258,7 @@ onsApp.directive('locationForm', function() {
 
 
 onsApp.config(function($routeProvider) {
+    $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
     $routeProvider.when('/persons', {templateUrl: 'partials/personList.html', controller: 'PersonListCtrl'});
     $routeProvider.when('/persons/:personId', {templateUrl: 'partials/personDetails.html', controller: 'PersonDetailsCtrl'});
     $routeProvider.when('/censuses', {templateUrl: 'partials/censusList.html', controller: 'CensusListCtrl'});
@@ -264,7 +267,7 @@ onsApp.config(function($routeProvider) {
     $routeProvider.when('/surnames/:surnameId', {templateUrl: 'partials/surnameDetails.html', controller: 'SurnameDetailsCtrl'});
     $routeProvider.when('/locations', {templateUrl: 'partials/locationList.html', controller: 'LocationListCtrl'});
     $routeProvider.when('/locations/:locationId', {templateUrl: 'partials/locationDetails.html', controller: 'LocationDetailsCtrl'});
-    $routeProvider.otherwise({redirectTo: '/persons'});
+    $routeProvider.otherwise({redirectTo: '/home'});
 });
 
 

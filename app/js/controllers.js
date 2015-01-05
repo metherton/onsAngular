@@ -157,7 +157,6 @@ onsControllers.controller('AddLocationCtrl', function ($scope, $modalInstance, c
 
 });
 
-//onsControllers.controller('AddCensusHouseholdEntryCtrl', function ($scope, $modalInstance, persons, locations) {
 onsControllers.controller('AddCensusHouseholdEntryCtrl', function ($scope, $modalInstance, censuses, locations, persons) {
 
     $scope.censuses = censuses;
@@ -260,8 +259,6 @@ onsControllers.controller('AddPersonCtrl', function ($scope, $modalInstance, sur
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
 });
-
-
 
 onsControllers.controller('LocationListCtrl', ['$scope', 'locationService', '$routeParams', '$location', '$route', '$modal', '$log',
     function($scope, locationService, $routeParams, $location, $route, $modal, $log) {
@@ -421,3 +418,21 @@ onsControllers.controller('CensusListCtrl', ['$scope', 'censusService', '$routeP
     }
 ]);
 
+onsControllers.controller('HomeCtrl', ['$scope', 'baseUrl', function ($scope, baseUrl) {
+
+    $scope.myInterval = 5000;
+    var slides = $scope.slides = [];
+
+    $scope.addSlide = function() {
+        var newWidth = 600 + slides.length + 1;
+        slides.push({
+            image: baseUrl + 'images/' + newWidth + '/300.jpg',
+            text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+                ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+        });
+    };
+    for (var i=0; i<4; i++) {
+        $scope.addSlide();
+    }
+
+}]);
