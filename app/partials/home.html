@@ -1,16 +1,29 @@
-<div>
-    <div style="height: 305px">
-        <carousel interval="myInterval">
-            <slide ng-repeat="slide in slides" active="slide.active">
-                <img ng-src="{{slide.image}}" style="margin:auto;">
-                <div class="carousel-caption">
-                    <h4>Slide {{$index}}</h4>
-                    <p>{{slide.text}}</p>
-                </div>
-            </slide>
-        </carousel>
-    </div>
+
+<div id="about">
+    <h3>About</h3>
+    <p>The Etherton One Name Study contains records of over 5000 Ethertons worldwide, from the 15th century to present day. Search our archives to discover the history of your Etherton family tree</p>
+    <h3>Contact</h3>
+    <p>If you need further information regarding your Etherton family history, please feel free to mail me at martinetherton63@gmail.com</p>
 </div>
+<div id="carousel">
+    <h3>Etherton Gallery</h3>
+    <carousel interval="myInterval">
+        <slide ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="{{slide.image}}" style="margin:auto;">
+            <div class="carousel-caption">
+                <h4>Slide {{$index}}</h4>
+                <p>{{slide.text}}</p>
+            </div>
+        </slide>
+    </carousel>
+</div>
+<div id="recent">
+    <h3>Recent Activity</h3>
+    <ul>
+        <li>5-1-2015 - Census information added</li>
+    </ul>
+</div>
+
 
 
 

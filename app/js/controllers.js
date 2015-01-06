@@ -427,11 +427,11 @@ onsControllers.controller('HomeCtrl', ['$scope', 'baseUrl', function ($scope, ba
         var newWidth = 600 + slides.length + 1;
         slides.push({
             image: baseUrl + 'images/' + newWidth + '/300.jpg',
-            text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-                ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+            text: ['Sidney Etherton','Sidney Etherton','Sydney Etherton','Sydney Etherton', 'Martin Etherton', 'Herbert Wilkinson'][slides.length % 6] + ' ' +
+                ['1917', '1919', '1931', '1935', '1967', '1927'][slides.length % 6]
         });
     };
-    for (var i=0; i<4; i++) {
+    for (var i=0; i<6; i++) {
         $scope.addSlide();
     }
 

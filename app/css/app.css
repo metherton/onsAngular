@@ -58,6 +58,7 @@ header {
 footer {
     margin-top: 2em;
 	margin-left : 5%;
+    clear:both;
 }
 
 p {
@@ -213,4 +214,35 @@ dt {
     float: right;
     height: 350px;
     width: 350px;
+ }
+
+ #about {
+     width:25%;
+     float:left;
+ }
+
+ #carousel {
+     height:500px;
+     width:44%;
+     float:left;
+     margin-left: 3%;
+     margin-right: 3%;
+ }
+
+ #carousel h3 {
+     text-align: center;
+     margin-bottom: 30px;
+ }
+
+ #recent {
+     width:25%;
+     float:left;
+ }
+
+ #recent h3 {
+     text-align: center;
+ }
+
+ #recent ul {
+     margin-left: 20px;
  }
