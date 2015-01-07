@@ -441,23 +441,23 @@ function isEmpty(value) {
     return angular.isUndefined(value) || value === '' || value === null || value !== value;
 }
 
-onsControllers.directive('mini', function() {
+onsControllers.directive('minValue', function() {
 
     return {
         restrict: 'A',
         require: 'ngModel',
         link: function(scope, elem, attr, ctrl) {
-            scope.$watch(attr.mini, function () {
+            scope.$watch(attr.minValue, function () {
                 ctrl.$setViewValue(ctrl.$viewValue);
             });
-            console.log(scope.$eval(attr.mini));
+            console.log(scope.$eval(attr.minValue));
             var minValidator = function (value) {
-                var min = scope.$eval(attr.mini) || 0;
+                var min = scope.$eval(attr.minValue) || 0;
                 if (!isEmpty(value) && value < min) {
-                    ctrl.$setValidity('mini', false);
+                    ctrl.$setValidity('minValue', false);
                     return undefined;
                 } else {
-                    ctrl.$setValidity('mini', true);
+                    ctrl.$setValidity('minValue', true);
                     return value;
                 }
             };

@@ -38,9 +38,9 @@
                     <span ng-show="addPersonForm.ageFrom.$error.max && addPersonForm.ageFrom.$dirty" >Age From must NOT be greater than age to</span>
                 </dd>
                 <dt><label for="ageTo">Age To:</label></dt>
-                <dd><input type="number" mini="34" ng-change="change()" class="form-group-sm form-control" name="ageTo" id="ageTo" ng-model="person.ageTo" required >
+                <dd><input type="number" min-value="{{person.ageFrom}}" ng-change="change()" class="form-group-sm form-control" name="ageTo" id="ageTo" ng-model="person.ageTo" required >
                     <span ng-show="addPersonForm.ageTo.$error.required && addPersonForm.ageTo.$dirty" >Age To is required</span>
-                    <span ng-show="addPersonForm.ageTo.$error.mini && addPersonForm.ageTo.$dirty" >Age To must NOT be less than age from</span>
+                    <span ng-show="addPersonForm.ageTo.$error.minValue && addPersonForm.ageTo.$dirty" >Age To must NOT be less than age from</span>
                 </dd>
 
                 <tt>value = {{person.ageTo}}</tt>
