@@ -436,3 +436,36 @@ onsControllers.controller('HomeCtrl', ['$scope', 'baseUrl', function ($scope, ba
     }
 
 }]);
+
+function isEmpty(value) {
+    return angular.isUndefined(value) || value === '' || value === null || value !== value;
+}
+
+onsControllers.directive('mini', function() {
+
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, elem, attr, ctrl) {
+            scope.$watch(attr.mini, function () {
+                ctrl.$setViewValue(ctrl.$viewValue);
+            });
+            console.log(scope.$eval(attr.mini));
+            var minValidator = function (value) {
+                var min = scope.$eval(attr.mini) || 0;
+                if (!isEmpty(value) && value < min) {
+                    ctrl.$setValidity('mini', false);
+                    return undefined;
+                } else {
+                    ctrl.$setValidity('mini', true);
+                    return value;
+                }
+            };
+            ctrl.$parsers.push(minValidator);
+            ctrl.$formatters.push(minValidator);
+        }
+
+
+    };
+
+});

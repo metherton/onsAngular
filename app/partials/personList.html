@@ -4,10 +4,11 @@
             <h3 class="modal-title">Add Person</h3>
         </div>
         <div class="modal-body">
+            <form novalidate name="addPersonForm">
             <dl>
                 <dt><label for="firstName">First Name:</label></dt>
                 <dd><input ng-change="change()" class="form-group-sm form-control" name="firstName" id="firstName" ng-model="person.firstName" required >
-                    <span ng-show="addPersonForm.firstName.$error.required && addPersonForm.firstName.dirty" >First Name is required</span>
+                    <span ng-show="addPersonForm.firstName.$error.required && addPersonForm.firstName.$dirty" >First Name is required</span>
                 </dd>
                 <dt><label for="surname">Surname:</label></dt>
                 <dd><select ng-change="change()" class="form-group-sm form-control" id="surname" ng-model="person.surname.entityId" ng-options="surname.entityId as surname.surname for surname in surnames"></select></dd>
@@ -30,8 +31,30 @@
                 </dd>
                 <dt><label for="gender">Gender:</label></dt>
                 <dd><input ng-change="change()" id="male" type="radio" ng-model="person.gender" value="1" /><label id="lblMale" for="male">Male</label><input  id="female" type="radio" ng-model="person.gender" value="0" /><label id="lblFemale" for="female">Female</label></dd>
-            </dl>
 
+                <dt><label for="ageFrom">Age From:</label></dt>
+                <dd><input type="number" max="{{person.ageTo}}" ng-change="change()" class="form-group-sm form-control" name="ageFrom" id="ageFrom" ng-model="person.ageFrom" required >
+                    <span ng-show="addPersonForm.ageFrom.$error.required && addPersonForm.ageFrom.$dirty" >Age From is required</span>
+                    <span ng-show="addPersonForm.ageFrom.$error.max && addPersonForm.ageFrom.$dirty" >Age From must NOT be greater than age to</span>
+                </dd>
+                <dt><label for="ageTo">Age To:</label></dt>
+                <dd><input type="number" mini="34" ng-change="change()" class="form-group-sm form-control" name="ageTo" id="ageTo" ng-model="person.ageTo" required >
+                    <span ng-show="addPersonForm.ageTo.$error.required && addPersonForm.ageTo.$dirty" >Age To is required</span>
+                    <span ng-show="addPersonForm.ageTo.$error.mini && addPersonForm.ageTo.$dirty" >Age To must NOT be less than age from</span>
+                </dd>
+
+                <tt>value = {{person.ageTo}}</tt>
+                <br>
+                <tt>value.$valid = {{addPersonForm.ageTo.$valid}}</tt>
+                <br>
+                <tt>value.$error = {{addPersonForm.ageTo.$error}}</tt>
+                <tt>value.$error.mini = {{addPersonForm.ageTo.$error.mini}}</tt>
+                <tt>$dirty = {{addPersonForm.ageTo.$dirty}}</tt>
+                <tt>ng-show = {{addPersonForm.ageTo.$error.mini && addPersonForm.ageTo.$dirty}}</tt>
+
+
+            </dl>
+            </form>
         </div>
         <div class="modal-footer">
             <button ng-disabled="isEmpty(person.firstName)" class="btn btn-primary" ng-click="ok()">OK</button>
