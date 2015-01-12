@@ -1,0 +1,14 @@
+<div>
+    <div ui-grid="gridOptions" ui-grid-pagination class="surnameGrid"></div>
+    <p>Page: {{ gridApi.pagination.getPage() }}</p>
+    <p>Total pages: {{ gridApi.pagination.getTotalPages() }}</p>
+    <button type="button" class="btn btn-success" ng-click="gridApi.pagination.previousPage()">
+        previous page
+    </button>
+    <button type="button" class="btn btn-success" ng-click="gridApi.pagination.nextPage()">
+        next page
+    </button>
+</div>
+
+
+

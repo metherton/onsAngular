@@ -259,6 +259,8 @@ onsApp.directive('locationForm', function() {
 
 onsApp.config(function($routeProvider) {
     $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'HomeCtrl'});
+    $routeProvider.when('/trees', {templateUrl: 'partials/treeList.html', controller: 'TreeListCtrl'});
+    $routeProvider.when('/trees/:treeId', {templateUrl: 'partials/treeDetails.html', controller: 'TreeDetailsCtrl'});
     $routeProvider.when('/persons', {templateUrl: 'partials/personList.html', controller: 'PersonListCtrl'});
     $routeProvider.when('/persons/:personId', {templateUrl: 'partials/personDetails.html', controller: 'PersonDetailsCtrl'});
     $routeProvider.when('/censuses', {templateUrl: 'partials/censusList.html', controller: 'CensusListCtrl'});

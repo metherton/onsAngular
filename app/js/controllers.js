@@ -437,35 +437,56 @@ onsControllers.controller('HomeCtrl', ['$scope', 'baseUrl', function ($scope, ba
 
 }]);
 
-function isEmpty(value) {
-    return angular.isUndefined(value) || value === '' || value === null || value !== value;
-}
+//function isEmpty(value) {
+//    return angular.isUndefined(value) || value === '' || value === null || value !== value;
+//}
 
-onsControllers.directive('minValue', function() {
+//onsControllers.directive('minValue', function(_) {
+//
+//    return {
+//        restrict: 'A',
+//        require: 'ngModel',
+//        link: function(scope, elem, attr, ctrl) {
+//            scope.$watch(attr.minValue, function () {
+//                ctrl.$setViewValue(ctrl.$viewValue);
+//            });
+//            var minValidator = function (value) {
+//                var min = scope.$eval(attr.minValue) || 0;
+//                if (!_.isEmpty(value) && value < min) {
+//                    ctrl.$setValidity('minValue', false);
+//                    return undefined;
+//                } else {
+//                    ctrl.$setValidity('minValue', true);
+//                    return value;
+//                }
+//            };
+//            ctrl.$parsers.push(minValidator);
+//            ctrl.$formatters.push(minValidator);
+//        }
+//
+//
+//    };
+//
+//});
+
+onsControllers.directive('minValue', function(_) {
 
     return {
-        restrict: 'A',
         require: 'ngModel',
-        link: function(scope, elem, attr, ctrl) {
-            scope.$watch(attr.minValue, function () {
-                ctrl.$setViewValue(ctrl.$viewValue);
-            });
-            console.log(scope.$eval(attr.minValue));
-            var minValidator = function (value) {
-                var min = scope.$eval(attr.minValue) || 0;
-                if (!isEmpty(value) && value < min) {
-                    ctrl.$setValidity('minValue', false);
-                    return undefined;
-                } else {
-                    ctrl.$setValidity('minValue', true);
-                    return value;
+        link: function(scope, elm, attrs, ctrl) {
+            console.log(ctrl.$validators);
+            console.log(attrs.minValue);
+            ctrl.$validators.minValue = function(modelValue, viewValue) {
+                if (ctrl.$isEmpty(modelValue)) {
+                    // consider empty models to be valid
+                    return true;
                 }
+                var min = scope.$eval(attrs.minValue) || 0;
+                if (!_.isEmpty(value) && value < min) {
+                    return false;
+                }
+                return true;
             };
-            ctrl.$parsers.push(minValidator);
-            ctrl.$formatters.push(minValidator);
         }
-
-
     };
-
 });
